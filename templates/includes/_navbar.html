@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-danger"  style = "margin-bottom: 25px;">
+    <div class="container-fluid">
+        <!--<a class="navbar-brand" href="#">weesite</a>-->
+        <!-- left items-->
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <a class="nav-link active" aria-current="page" href="/">All Lists</a>
+            
+        </ul>
+
+        <div class=" text-center me-auto mb-2 mb-md-0">
+            <h1 class="text-white">List Website</h1>
+            
+
+        </div>
+
+        <!-- right items-->
+        <ul class="nav navbar-nav navbar-right">
+            
+            {% if session.logged_in %}
+                <a class="nav-link" href="/sessionuser">{{session['username']}}'s Lists</a>
+                <a class="nav-link" href="/new">New List</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            {% else %}
+                <a class="nav-link" href="/login">Log in</a>
+                <a class="nav-link" href="/register">Register</a>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

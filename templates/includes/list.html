@@ -1,0 +1,29 @@
+<div class="card" style = "width: 450px; float: left; margin-left: 5px; margin-bottom: 10px;" >
+    <div class="row">
+        <div class="column">
+          {% for icon in extra["site_icons"] %}
+              <img src={{icon}} width="75" height = "75">
+          {% endfor %}
+        </div>
+    </div>  
+
+    <div class="card-body">
+      <div style = "display: flex;">
+        <p style="font-weight: bold; text-align: left;">{{list.name}}</p>
+      </div>
+      <div style = "display: flex - end; ">
+        <a class="btn btn-primary" href="/list/{{list.name}}">Use List </a>
+        <p>{{list.description}}</p>
+        <div style="justify-content: flex-end;">
+        </div>
+        <p>
+          posted
+          {% if showUsernames: %}
+            by 
+            <a href = "/user/{{extra["name"]}}" class="text-muted">{{extra["name"]}}</a>
+          {% endif %}
+          {{extra["time"]}}
+        </p>
+      </div>
+    </div>
+  </div>

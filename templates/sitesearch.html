@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>{{name}}</h1>
+    {% from "includes/_formhelpers.html" import render_field %}
+
+    <form method="POST" action="">
+        <div class="form-group" style = "display: inline-block;">
+            {{render_field(form.search,class_="form-control")}}
+        </div>
+        <div style = "display: inline-block;">
+            <p><input type="submit" class="btn btn-primary" value="Search"></p>
+        </div>
+    </form> 
+
+    <a class="btn btn-sm btn-secondary" href="/edit/{{name}}">Edit Sites</a>
+    <a class="btn btn-sm btn-danger" href="/delete/{{name}}">Delete</a>
+
+    <h3>Sites in this list</h3>
+    {% if sites: %}
+        {% for site in sites: %}
+            {% include "includes/site.html" %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

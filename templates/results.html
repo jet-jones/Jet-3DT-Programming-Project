@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1 class = "jumbotron text-center">search results</h1>
+
+    {% if results: %}
+        {% for result in results: %}
+            {% include "includes/result.html" %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

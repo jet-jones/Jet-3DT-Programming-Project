@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% from "includes/_formhelpers.html" import render_field %}
+
+    <a class="btn btn-sm btn-secondary" href="/list/{{list_name}}">Back</a>
+
+    <form method="POST" action="">
+        <div class="form-group" style = "display: inline-block;">
+            {{render_field(form.site,class_="form-control")}}
+        </div>
+        <div style = "display: inline-block;">
+            <p><input type="submit" class="btn btn-primary" value="Add"></p>
+        </div>
+    </form>
+
+    <div class="jumbotron text-center">
+        <h1>edit {{list_name}}</h1>
+    </div> 
+
+    {% if sites: %}
+    
+        {% for site in sites: %}
+            {% include "includes/siteedit.html" %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <ul>
+    <div class="container" style="display: flex;">
+        <div >
+            {% set lists = allLists %}
+            {% if lists: %}
+                {% set count = [1] %}
+                {% for list_row in lists | batch(2,'&nbsp;') %}
+                    {% for list in list_row: %}
+                        {% set __ = count.append(1) %}
+                        {% set index = count|length - 2 %}
+                        {% if extra[index] %}
+                            {% set extra = extra[index] %}
+                            {% include "includes/list.html" %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h3>There are no lists</h3>
+            {% endif %}
+        </div>
+    </div>
+    </ul>
+
+{% endblock %}

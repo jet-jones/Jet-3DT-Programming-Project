@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1 >{{name}}'s lists:</h1>
+  <a class="btn btn-sm btn-outline-secondary" href="/new">New List</a>
+
+  <div style="clear:both;"></div>
+  
+  {% set allLists = userLists %}
+  <div class="container" style="display: flex;">
+    <div >
+        {% set lists = allLists %}
+        {% if lists: %}
+            {% set count = [1] %}
+            {% for list_row in lists | batch(2,'&nbsp;') %}
+                {% for list in list_row: %}
+                    {% set __ = count.append(1) %}
+                    {% set index = count|length - 2 %}
+                    {% if extra[index] %}
+                        {% set extra = extra[index] %}
+                        {% include "includes/list.html" %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
