@@ -7,7 +7,8 @@ import os
 
 config = Config()
 
-def format_time(difference):
+def format_time(difference): 
+    # convert the unix time into a more readable format probably a way easier way of doing this 
     minutes = int(difference / 60)
     if (minutes < 60):
         return str(minutes) + " minutes ago"
@@ -21,11 +22,9 @@ def format_time(difference):
             days = int(hours / 24)
 
             return str(days) + " days ago"
-    
-    
 
 class List:
-
+    
     def __init__(self):
         self.dbPath = config.dbName
 
@@ -34,7 +33,7 @@ class List:
             cur = con.cursor()
 
             cur.execute("SELECT id FROM lists where name = ?",[name])
-            listsWithSameName = cur.fetchone()
+            listsWithSameName = cur.fetchone() # if a list already exists with the same name
 
             if (not listsWithSameName):
                 
@@ -42,7 +41,7 @@ class List:
 
                 list_id = cur.lastrowid
 
-                if sites != "":
+                if sites != "": # if new sites has list
                     sitelist = sites.split(", ")
                     for url in sitelist:
                         cur.execute("SELECT id FROM sites WHERE url = ?",[url])

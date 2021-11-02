@@ -25,7 +25,7 @@ def is_loggged_in(f):
 
 def is_owner(f):
     @wraps(f)
-    def wrap(*args, **kwargs):  
+    def wrap(*args, **kwargs):      
         return("")
 
 @app.route("/", methods=["GET", "POST"])
@@ -39,7 +39,7 @@ def home():
 @app.errorhandler(404)
 def page_not_found():
     app.logger.info("404 encountered")
-    return render_template("errors/404.html")"""
+    return render_template("errors/404.html") """
 
 @app.route("/new", methods=["GET", "POST"])
 @is_loggged_in
@@ -118,6 +118,7 @@ def user(user_name):
         return redirect(url_for("home"))
 
 
+# individual list view
 @app.route("/list/<string:list_name>", methods = ["GET", "POST"])
 def list(list_name):
     list = List()
@@ -162,6 +163,7 @@ def register():
             redirect(url_for("register"))
 
     return render_template("register.html", form=form)
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
